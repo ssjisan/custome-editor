@@ -2,16 +2,11 @@ import { Box } from "@mui/material";
 import { Container } from "@mui/system";
 import { Editor } from "@tinymce/tinymce-react";
 import React, { useRef } from "react";
-
+import "./editor.css";
 export default function TinyEdditor() {
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
   return (
-    <Box>
+    <Box sx={{ mt: 5 }}>
       <Container>
         <Editor
           apiKey="q15jacj5azzopukv0hldcafwptxanxfvjsizqpn9y2jztsur"
@@ -20,18 +15,18 @@ export default function TinyEdditor() {
           init={{
             height: 500,
             menubar: false,
+            statusbar: false,
+            background_colors: "red",
             plugins: [
               "advlist autolink lists link image charmap print preview anchor",
               "searchreplace visualblocks code fullscreen",
               "insertdatetime media table paste code help wordcount",
+              "underline",
+              "strikethrough",
+              "lists",
             ],
-            toolbar:
-              "undo redo | formatselect | " +
-              "bold italic backcolor | alignleft aligncenter " +
-              "alignright alignjustify | bullist numlist outdent indent | " +
-              "removeformat | help",
-            content_style:
-              "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            toolbar: "bold italic underline strikethrough | bullist numlist",
+            body_class: "my_class",
           }}
         />
       </Container>
