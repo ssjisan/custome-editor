@@ -1,7 +1,8 @@
-import CustomeEditor from "./Layout/CustomeEditor";
+import TinyEdditor from "./Layout/TinyEdditor";
 
 function App() {
-  return <CustomeEditor />;
+  
+  return <TinyEdditor />;
 }
 
 export default App;

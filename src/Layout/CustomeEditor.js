@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useState } from "react";
-import { Editor, EditorState,convertToRaw  } from "draft-js";
+import { Editor, EditorState, convertToRaw } from "draft-js";
 import { RichUtils } from "draft-js";
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
@@ -30,10 +30,10 @@ export default function CustomeEditor() {
   };
 
   const handleEditorChange = (editorState) => {
-      console.log(convertToRaw(editorState.getCurrentContent()))
-    setEditorState(editorState);
-
+    const rawContentState = convertToRaw(editorState.getCurrentContent());
+    setEditorState(rawContentState);
   };
+  console.log(editorState);
   return (
     <Container>
       <Box>
