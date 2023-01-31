@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useState } from "react";
-import { Editor, EditorState, convertToRaw } from "draft-js";
+import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { RichUtils } from "draft-js";
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
@@ -17,9 +17,8 @@ export default function CustomeEditor() {
   const handleBoxClick = () => {
     editorRef.current.focus();
   };
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
   const handleKeyCommand = (command) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -29,11 +28,11 @@ export default function CustomeEditor() {
     return "not-handled";
   };
 
-  const handleEditorChange = (editorState) => {
-    const rawContentState = convertToRaw(editorState.getCurrentContent());
-    setEditorState(rawContentState);
+  const handleChange = (newEditorState) => {
+    setEditorState(newEditorState);
   };
   console.log(editorState);
+
   return (
     <Container>
       <Box>
@@ -191,7 +190,7 @@ export default function CustomeEditor() {
         >
           <Editor
             editorState={editorState}
-            onChange={handleEditorChange}
+            onChange={handleChange}
             handleKeyCommand={handleKeyCommand}
             ref={editorRef}
           />

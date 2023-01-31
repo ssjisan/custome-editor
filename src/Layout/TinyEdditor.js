@@ -1,16 +1,21 @@
 import { Box } from "@mui/material";
 import { Container } from "@mui/system";
 import { Editor } from "@tinymce/tinymce-react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./editor.css";
 export default function TinyEdditor() {
-  const editorRef = useRef(null);
+  const [content, setContent] = useState("");
+
+  const handleEditorChange = (content, editor) => {
+    setContent(content);
+  };
+  console.log(content);
   return (
     <Box sx={{ mt: 5 }}>
       <Container>
         <Editor
           apiKey="q15jacj5azzopukv0hldcafwptxanxfvjsizqpn9y2jztsur"
-          onInit={(evt, editor) => (editorRef.current = editor)}
+          onEditorChange={handleEditorChange}
           initialValue="<p>This is the initial content of the editor.</p>"
           init={{
             height: 500,
@@ -26,7 +31,8 @@ export default function TinyEdditor() {
               "lists",
             ],
             toolbar: "bold italic underline strikethrough | bullist numlist",
-            body_class: "my_class",
+            content_style:
+              "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
           }}
         />
       </Container>
