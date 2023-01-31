@@ -16,8 +16,9 @@ export default function TinyEdditor() {
         <Editor
           apiKey="q15jacj5azzopukv0hldcafwptxanxfvjsizqpn9y2jztsur"
           onEditorChange={handleEditorChange}
-          initialValue="<p>This is the initial content of the editor.</p>"
           init={{
+            placeholder:
+              "e.g. Passionate science teacher with 8+ years of experience and a track record of ...",
             height: 500,
             menubar: false,
             statusbar: false,
@@ -32,7 +33,7 @@ export default function TinyEdditor() {
             ],
             toolbar: "bold italic underline strikethrough | bullist numlist",
             content_style:
-              "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+              "body { font-family:Helvetica,Arial,sans-serif; font-size:14px; font-weight:500 }",
           }}
         />
       </Container>
